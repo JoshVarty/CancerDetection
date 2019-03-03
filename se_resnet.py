@@ -118,13 +118,13 @@ def se_resnet34(num_classes=1_000):
     return model
 
 
-def se_resnet50(num_classes=1_000, pretrained=False):
+def se_resnet50(pretrained=False, **kwargs):
     """Constructs a ResNet-50 model.
 
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
-    model = ResNet(SEBottleneck, [3, 4, 6, 3], num_classes=num_classes)
+    model = ResNet(SEBottleneck, [3, 4, 6, 3], **kwargs)
     model.avgpool = nn.AdaptiveAvgPool2d(1)
     if pretrained:
         model.load_state_dict(model_zoo.load_url("https://www.dropbox.com/s/xpq8ne7rwa4kg4c/seresnet50-60a8950a85b2b.pkl"))
