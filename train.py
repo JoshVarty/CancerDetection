@@ -19,7 +19,8 @@ def train(model):
     
     learner = create_cnn(data, model, metrics=accuracy)
     learner.fit_one_cycle(30, max_lr=1e-2)
-    
+    learner.save(model.__name__ + "_saved")
+    learner.export(model.__name__)
 
 if __name__ == "__main__":
 
