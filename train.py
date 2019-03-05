@@ -19,17 +19,13 @@ def train(model):
     
     learner = create_cnn(data, model, metrics=accuracy)
     learner.unfreeze()
-    learner.fit_one_cycle(30, max_lr=slice(1e-6,1e-2))
+    learner.fit_one_cycle(15, max_lr=slice(1e-6,1e-2))
     learner.save(model.__name__ + "_saved")
     learner.export(model.__name__)
 
 if __name__ == "__main__":
 
-    pre_trained_models = [models.resnet34, models.resnet50, models.resnet101, models.densenet121, models.squeezenet1_1]
+    pre_trained_models = [models.resnet34, models.resnet50, models.resnet101, models.resnet152, models.densenet121, models.squeezenet1_1]
     for model in pre_trained_models:
-        train(model)
-    
-    untrained_models = [se_resnet50]
-    for model in untrained_models:
         train(model)
     
