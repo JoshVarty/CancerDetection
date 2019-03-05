@@ -1,4 +1,4 @@
-from fastai.vision import ImageImageList, load_learner, models
+from fastai.vision import ImageImageList, load_learner, models, DatasetType
 import pandas as pd
 from fastai.metrics import error_rate
 import os
